@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+
+body {
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(139, 22, 22));
+}
+.contenedor {
+    position: absolute;
+    left: 80px;
+    width: 380px;
+    height: 450px;
+    border: solid 2px lightgray;
+    background-color: rgb(5, 5, 5);
+    overflow: hidden;
+}
+
+.titulo {
+    position: relative;
+    top: 0px;
+    left: 100px
+}
+
+
+.contenedor-resultado {
+    width: 375px;
+    height: 150px;
+    position:relative;
+    top: 2px;
+    left: 2px;
+   
+}
+
+.data-hora {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 20px;
+    background: lightslategrey;
+    color: white;
+    
+}
+
+.display {
+    width: 100%;
+    height: 85%;
+    background: rgb(114, 112, 112);
+    display: inline-block;
+}
+
+.historico {
+    display: inline-block;
+    position: relative;
+    top: -10px;
+    font-size: 20px;
+    color: white;
+}
+
+.digito {
+    display: inline-block;
+    font-size: 50px;
+    color: white;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+
+}
+
+.numeros {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.btn__num {
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    cursor: pointer;
+    border: none;
+    opacity: 90%;
+}
+
+.btn__num:hover {
+    background:lightseagreen;
+    transition: .3s;
+    
+}
+
+.btn__num:active {
+    transition: .1s;
+    font-size: 25px;
+    
+}
+
+.contenedor-buttons {
+    position: relative;
+    top: -300px;
+    left: 250px;
+    height: 300px;
+}
+.buttons {
+    width: 90px;
+}
+
+.button__op {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: none;
+}
+
+.button__igual {
+    height: 39px;
+    width: 125px;
+    font-size: 30px;
+    border: none;
+}
+
+.button__op:hover {
+    background: orange;
+}
+
+.button__igual:hover {
+    background: rgb(40, 172, 40);
+}
+
+.dt {
+  position: absolute; 
+  left: 5px;
+}
+
+.time {
+   position: absolute;
+   left: 310px;
+}
+
+.tabledt{
+    display: inline;
+    position: absolute;
+    top: -18px;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="contenedor"> 
+        <div class="contenedor-resultado">
+            <div class="data-hora">
+                <table class="tabledt">
+                    <tr>
+                        <td>
+                            <p class="dt"></p> 
+                        </td>
+                        <td>
+                            <p class="time"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="display">
+                <p class="historico"></p>
+                <p class="digito digito0" ></p>
+            </div>
+        </div>
+
+        <div class="contenedor-numeros">
+            <table class="numeros">
+               
+
+                <tr>    
+                    <td><button class="btn__num h" onclick="insert3()">H</button></td>
+                    <td><button class="btn__num" onclick="insert('(')">(</button></td>
+                    <td><button class="btn__num" onclick="insert(')')">)</button></td>
+                    
+                </tr>
+
+                <tr>
+                    <td><button class="btn__num btn1" onclick="insert('1')">1</button></td>
+                    <td><button class="btn__num btn2" onclick="insert('2')">2</button></td>
+                    <td><button class="btn__num btn3" onclick="insert('3')">3</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="btn__num btn4" onclick="insert('4')">4</button></td>
+                    <td><button class="btn__num btn5" onclick="insert('5')">5</button></td>
+                    <td><button class="btn__num btn6" onclick="insert('6')">6</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="btn__num btn7" onclick="insert('7')">7</button></td>
+                    <td><button class="btn__num btn8" onclick="insert('8')">8</button></td>
+                    <td><button class="btn__num btn9" onclick="insert('9')">9</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button class="btn__num btn0" onclick="insert('0')">0</button></td>
+                    <td><button class="btn__num" onclick="insert('.')">.</button></td>
+                </tr>
+
+
+
+            </table>
+        </div>
+
+        <div class="contenedor-buttons">
+            <table class="buttons">
+                <tr>
+                    <td><button class="button__op btnc" onclick = "clean()">C</button></td>
+                    <td><button class="button__op btnv" onclick = "voltar()">voltar</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="button__op btnsoma" onclick = "insert('+')">+</button></td>
+                    <td><button class="button__op btnrestar" onclick="insert('-')">-</button></td>
+                </tr>
+
+                <tr>
+                    <td><button class="button__op btnmultiplicar" onclick="insert('*')">X</button></td>
+                    <td><button class="button__op btndividir" onclick="insert('/')">/</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button__op btnraiz" onclick="fazerRaiz()" >Raiz</button></td>
+                    <td><button class="button__op btnpotencia" onclick="insert('**')">^</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button class="button__igual" onclick="calcular()">=</button></td>
+                </tr>
+
+            </table>
+        </div>
+
+        <script src="mainCalc.js"></script>
+
+       
+    </div>
+
+   
+
+</body>
+
+
+</html>
